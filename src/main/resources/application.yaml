@@ -6,9 +6,9 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/order_db
-    username: order_user
-    password: order_password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/order_db}
+    username: ${SPRING_DATASOURCE_USERNAME:order_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:order_password}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-init-sql: SET TIME ZONE 'UTC'
@@ -35,6 +35,6 @@ management:
         include: health,info,prometheus
 
 services:
-  catalog-url: http://localhost:8081
-  seating-url: http://localhost:8082
-  payment-url: http://localhost:8084
+  catalog-url: ${SERVICES_CATALOG_URL:http://localhost:8081}
+  seating-url: ${SERVICES_SEATING_URL:http://localhost:8082}
+  payment-url: ${SERVICES_PAYMENT_URL:http://localhost:8084}
